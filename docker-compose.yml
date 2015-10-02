@@ -1,0 +1,9 @@
+app:
+  build: .
+  ports:
+   - "8000:80"
+  volumes:
+    - ./:/root/app
+    - ./files:/opt/docs
+  working_dir: /root/app
+  command: python manage.py runserver 0.0.0.0:8000
