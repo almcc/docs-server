@@ -1,9 +1,26 @@
-app:
-  build: .
-  ports:
-   - "8000:80"
+docs:
+  image: centos:7
   volumes:
-    - ./:/root/app
-    - ./files:/opt/docs
-  working_dir: /root/app
-  command: python manage.py runserver 0.0.0.0:8000
+    - ./files:/data/docs
+
+webapp:
+  build: oddjob
+  ports:
+   - "8000:8000"
+  volumes:
+    - ./oddjob:/opt/oddjob
+  volumes_from:
+    - docs
+  working_dir: /opt/oddjob
+  command: bash start-app.sh
+
+scraper:
+  build: scraper
+  links:
+    - webapp
+  volumes:
+    - ./scraper:/opt/scraper
+  volumes_from:
+    - docs
+  working_dir: /opt/scraper
+  command: python scraper.py

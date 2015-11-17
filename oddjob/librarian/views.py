@@ -4,6 +4,7 @@ from .serializers import ReleaseSerializer, ArtifactSerializer
 from rest_framework import generics
 from django.http import HttpResponse
 import json
+from django.shortcuts import render
 
 
 class CollectionList(generics.ListCreateAPIView):
@@ -56,6 +57,14 @@ def path_tree(request):
         for release in product.releases.all():
             paths.append('{}/{}'.format(product.name, release.name))
             for artifact in release.artifacts.all():
-                paths.append('{}/{}/{}'.format(product.name, release.name, artifact.name))
+                paths.append('{}/{}/{}'.format(product.name,
+                                               release.name,
+                                               artifact.name))
 
     return HttpResponse(json.dumps(paths))
+
+
+def home(request):
+    products = Product.objects.all()
+    context = {'products': products}
+    return render(request, 'home.html', context)
