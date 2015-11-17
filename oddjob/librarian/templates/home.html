@@ -2,5 +2,28 @@
 
 {% block content %}
 
+{% for collection in collections %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>{{ collection.name }}</h4>
+    </div>
+    <ul class="list-group">
+        {% for product in collection.products.all %}
+        <li class="list-group-item"><a href="product/{{product.name}}">{{product.name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Uncategorized</h4>
+    </div>
+    <ul class="list-group">
+        {% for product in uncategorized %}
+        <li class="list-group-item"><a href="product/{{product.name}}">{{product.name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
 
 {% endblock %}

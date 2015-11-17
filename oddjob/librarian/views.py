@@ -65,6 +65,7 @@ def path_tree(request):
 
 
 def home(request):
-    products = Product.objects.all()
-    context = {'products': products}
+    collections = Collection.objects.all()
+    uncategorized = Product.objects.filter(collections=None)
+    context = {'collections': collections, 'uncategorized': uncategorized}
     return render(request, 'home.html', context)
