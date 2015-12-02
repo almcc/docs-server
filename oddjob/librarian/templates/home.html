@@ -9,7 +9,9 @@
     </div>
     <ul class="list-group">
         {% for product in collection.products.all %}
-        <li class="list-group-item"><a href="product/{{product.name}}">{{product.name}}</a></li>
+        <li class="list-group-item">
+            <a href="product/{{product.name}}/">{{product.name}}</a>
+        </li>
         {% endfor %}
     </ul>
 </div>

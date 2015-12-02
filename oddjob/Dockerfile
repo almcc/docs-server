@@ -7,7 +7,7 @@ RUN yum install -y python-pip vim tree tmux htop wget
 RUN yum clean all
 
 RUN pip install --upgrade pip
-RUN pip install Django django-cors-headers django-filter djangorestframework rest-framework-ember django-bootstrap-form requests
+RUN pip install Django django-cors-headers django-filter djangorestframework rest-framework-ember django-crispy-forms
 
 MAINTAINER Alastair McClelland <alastair.mcclelland@gmail.com>
 

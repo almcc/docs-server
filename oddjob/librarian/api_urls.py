@@ -1,9 +1,8 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url, patterns
 from rest_framework.urlpatterns import format_suffix_patterns
 import views
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
 
     url(r'^collections$',
         views.CollectionList.as_view(),
@@ -40,6 +39,6 @@ urlpatterns = patterns(
     url(r'^path-tree$',
         views.path_tree,
         name='path-tree'),
-)
+]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

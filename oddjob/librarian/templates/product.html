@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if product %}
+
+    <div class="page-header">
+        <h1>{{product.name}}</h1>
+    </div>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Version</th>
+                <th><span class="pull-right">Aritfacts</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for release in product.releases.all %}
+            <tr>
+                <td>{{release.name}}</td>
+                <td>
+                    <span class="pull-right">
+                    {% for artifact in release.artifacts.all %}
+                        <a class="btn btn-default" href="/product/{{product.name}}/{{release.name}}/{{artifact.name}}/" role="button">{{artifact.name}}</a>
+                    {% endfor %}
+                    </span>
+                </td>
+            </tr>
+          {% endfor %}
+
+      </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-danger" role="alert"><strong>Error!</strong> '{{name}}' not found!</div>
+{% endif %}
+
+{% endblock %}

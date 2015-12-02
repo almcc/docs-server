@@ -69,3 +69,16 @@ def home(request):
     uncategorized = Product.objects.filter(collections=None)
     context = {'collections': collections, 'uncategorized': uncategorized}
     return render(request, 'home.html', context)
+
+
+def product(request, product):
+    product_obj = None
+    query = Product.objects.filter(name=product)
+    if query:
+        product_obj = query.get()
+    context = {'name': product, 'product': product_obj}
+    return render(request, 'product.html', context)
+
+
+def artifact(request, product, release, artifact):
+    return HttpResponse("boo")

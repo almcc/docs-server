@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'corsheaders',
     'librarian',
+    'crispy_forms',
 )
 
 MIDDLEWARE_CLASSES = (
