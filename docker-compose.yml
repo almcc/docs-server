@@ -5,8 +5,6 @@ docs:
 
 webapp:
   build: oddjob
-  ports:
-   - "8000:8000"
   volumes:
     - ./oddjob:/opt/oddjob
   volumes_from:
@@ -37,6 +35,10 @@ nginx:
     - webapp
   volumes_from:
     - docs
+  volumes:
+    - ./oddjob:/opt/oddjob
+  ports:
+   - "8000:80"
 
 postgres:
   build: postgres

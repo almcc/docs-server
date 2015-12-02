@@ -7,7 +7,7 @@ RUN yum install -y gcc python-devel python-pip vim tree tmux htop wget postgresq
 RUN yum clean all
 
 RUN pip install --upgrade pip
-RUN pip install Django django-cors-headers django-filter djangorestframework rest-framework-ember django-crispy-forms psycopg2
+RUN pip install Django django-cors-headers django-filter djangorestframework rest-framework-ember django-crispy-forms psycopg2 gunicorn
 
 MAINTAINER Alastair McClelland <alastair.mcclelland@gmail.com>
 
