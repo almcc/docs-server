@@ -11,8 +11,14 @@ webapp:
     - ./oddjob:/opt/oddjob
   volumes_from:
     - docs
+  links:
+    - postgres
   working_dir: /opt/oddjob
   command: bash start-app.sh
+  environment:
+    - DB_USER=username
+    - DB_PASS=password
+    - DB_NAME=database
 
 scraper:
   build: scraper
@@ -24,3 +30,17 @@ scraper:
     - docs
   working_dir: /opt/scraper
   command: python scraper.py
+
+nginx:
+  build: nginx
+  links:
+    - webapp
+  volumes_from:
+    - docs
+
+postgres:
+  build: postgres
+  environment:
+    - DB_USER=username
+    - DB_PASS=password
+    - DB_NAME=database
