@@ -15,7 +15,7 @@ urlpatterns = [
         views.product,
         name='product'),
 
-    url(r'^product/(?P<product>[0-9a-zA-Z_-]+)/(?P<release>[\.0-9a-zA-Z_-]+)/(?P<artifact>[0-9a-zA-Z_-]+/)$',
+    url(r'^product/(?P<product>[0-9a-zA-Z_-]+)/(?P<release>[\.0-9a-zA-Z_-]+)/(?P<artifact>[0-9a-zA-Z_-]+)/(?P<extra>.*)$',
         views.artifact,
         name='artifact')
 ]

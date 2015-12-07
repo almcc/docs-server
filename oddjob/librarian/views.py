@@ -80,5 +80,8 @@ def product(request, product):
     return render(request, 'product.html', context)
 
 
-def artifact(request, product, release, artifact):
-    return HttpResponse("boo")
+def artifact(request, product, release, artifact, extra):
+    response = HttpResponse()
+    response['Content-Type'] = ''  # Need to reset content type so that nginxx can guess.
+    response['X-Accel-Redirect'] = "/docs/{}/{}/{}/{}".format(product, release, artifact, extra)
+    return response
